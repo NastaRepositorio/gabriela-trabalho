@@ -17,8 +17,7 @@ new #[Layout('components.layouts.guest')] class extends Component {
 
     public function submit()
     {
-        // Aqui você pode implementar a lógica de autenticação.
-        // Exemplo:
+        
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
             return redirect()->route('home');
         }

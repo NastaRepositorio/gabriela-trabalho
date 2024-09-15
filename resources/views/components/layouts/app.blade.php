@@ -8,6 +8,32 @@
 
     @vite(['resources/sass/app.scss', 'resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Layout do template -->
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .content {
+            flex: 1;
+            padding-bottom: 20px;
+        }
+
+        footer {
+            padding: 10px 0;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -20,7 +46,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
-                    <!-- Links comuns a todos os usuários autenticados -->
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('posts') }}">Posts</a>
                     </li>
@@ -36,8 +61,18 @@
     </nav>
 
     <!-- Conteúdo da página -->
-    <div class="container mt-4">
+    <div class="container mt-4 content">
         {{ $slot }}
     </div>
+
+    <!-- Footer -->
+    <footer class="text-white bg-primary">
+        <div class="container text-center">
+            <p>Siga-nos no Instagram: <a href="https://www.instagram.com/vivo.cerrado" class="text-white">@vivo.cerrado</a></p>
+            <p>Entre em contato: <a href="mailto:gabriela.souza1@estudante.ifgoiano.edu.br" class="text-white">gabriela.souza1@estudante.ifgoiano.edu.br</a> |
+                <a href="mailto:mariana.botelho@estudante.ifgoiano.edu.br" class="text-white">mariana.botelho@estudante.ifgoiano.edu.br</a></p>
+            <p class="mt-3">&copy; {{ date('Y') }} Cerrado Vivo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 </body>
 </html>
