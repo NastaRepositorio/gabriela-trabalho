@@ -30,6 +30,8 @@ new class extends Component {
 
     public function updatePost()
     {
+        $this->validate();
+
         Post::where('id', $this->post['id'])->update([
             'title' => $this->title,
             'content' => $this->content,
@@ -46,6 +48,7 @@ new class extends Component {
 
     public function submitComment()
     {
+        $this->validate();
         // Validar e criar o comentário
         Comment::create([
             'user_id' => Auth::id(),
@@ -145,7 +148,6 @@ new class extends Component {
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
-
         </form>
     </div>
 

@@ -17,7 +17,8 @@ new #[Layout('components.layouts.guest')] class extends Component {
 
     public function submit()
     {
-        
+        $this->validate();
+
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
             return redirect()->route('home');
         }
@@ -61,6 +62,7 @@ new #[Layout('components.layouts.guest')] class extends Component {
 
             <button class="btn btn-primary w-100 py-2" type="submit">Entrar</button>
             <a href="{{ route('register') }}" class="btn btn-outline-primary w-100 py-2 mt-3">Cadastro</a>
+            <a href="{{ route('forgot-password') }}" class="btn btn-link w-100 py-2 mt-3">Esqueceu a senha?</a>
         </form>
     </div>
 </div>

@@ -15,6 +15,7 @@ new class extends Component {
 
     public function submit()
     {
+        $this->validate();
         // Criação do post
         $post = Post::create([
             'user_id' => Auth::id(),
