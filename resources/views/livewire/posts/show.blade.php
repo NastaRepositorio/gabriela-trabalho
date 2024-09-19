@@ -86,9 +86,9 @@ new class extends Component {
     @if ($post['user_id'] === auth()->id())
         <div class="d-flex justify-content-end mb-4">
             <!-- Botão para abrir o modal de edição -->
-            <button class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#editPostModal">
+            <a href="{{ route('my-posts.edit', $post['id']) }}" class="btn btn-outline-primary me-2">
                 <i class="bi bi-pencil"></i> Editar
-            </button>
+            </a>
 
             <!-- Botão para excluir o post -->
             <button class="btn btn-outline-danger" wire:click="deletePost"
@@ -103,6 +103,9 @@ new class extends Component {
         <div class="card-body">
             <h2 class="card-title text-primary">{{ $post['title'] }}</h2>
             <p class="text-dark">Escrito em: {{ $post['created_at']->format('d/m/Y') }}</p>
+            @if($post['image'])
+            <img src="{{ Storage::url($post['image']) }}" class="img-fluid mb-3">
+            @endif
             <p class="card-text">{{ $post['content'] }}</p>
         </div>
     </div>
@@ -149,42 +152,5 @@ new class extends Component {
                 @enderror
             </div>
         </form>
-    </div>
-
-    <!-- Modal de Edição -->
-    <div class="modal fade" id="editPostModal" tabindex="-1" aria-labelledby="editPostModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <!-- Cabeçalho do Modal -->
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editPostModalLabel">Editar Post</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <!-- Corpo do Modal com o Formulário -->
-                <div class="modal-body">
-                    <form wire:submit.prevent="updatePost">
-                        <div class="mb-3">
-                            <label for="title" class="form-label">Título do Post</label>
-                            <input type="text" id="title" class="form-control" wire:model="title">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="content" class="form-label">Conteúdo</label>
-                            <textarea id="content" class="form-control" wire:model="content" rows="6"></textarea>
-                        </div>
-
-
-
-                </div>
-
-                <!-- Rodapé do Modal -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-                </div>
-                </form>
-            </div>
-        </div>
     </div>
 </div>

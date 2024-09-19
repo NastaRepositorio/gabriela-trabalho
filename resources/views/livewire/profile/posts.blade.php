@@ -33,7 +33,14 @@ new class extends Component {
 
 <div>
     <!-- Form de criação do post -->
-    <livewire:profile.form>
+    {{-- <livewire:profile.form> --}}
+
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="mb-4">Meus Posts</h1>
+        <a href="{{ route('my-posts.create') }}" class="btn btn-outline-secondary">
+            <i class="bi bi-plus me-2"></i>Escrever um novo post
+        </a>
+    </div>
     
     <div class="row mt-4">
         @foreach ($posts as $post)

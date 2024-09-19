@@ -9,7 +9,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id','title', 'content'];
+    protected $fillable = ['user_id', 'title', 'content', 'image'];
 
     public function user()
     {
@@ -26,3 +26,4 @@ class Post extends Model
         return $query->orderBy('created_at', 'desc');
     }
 }
+
