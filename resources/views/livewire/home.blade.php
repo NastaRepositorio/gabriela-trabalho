@@ -79,7 +79,9 @@ new class extends Component {
                 <li class="list-group-item">
                     <h5 class="fw-bold mt-2 text-primary fw-semibold">{{ $post->title }}</h5>
                     <p>{{ $post->content }}</p>
-                    @if(Auth::user()->id === 1)
+
+                    {{-- Exibir botões de edição/exclusão apenas para o usuário com id 1 --}}
+                    @if(Auth::check() && Auth::user()->id === 1)
                     <div class="d-flex justify-content-end">
                         <button class="btn btn-warning btn-sm me-2" wire:click="selectPostForEdit({{ $post->id }})" data-bs-toggle="modal" data-bs-target="#editInspPostModal">
                             Editar
@@ -98,7 +100,7 @@ new class extends Component {
               </ul>
 
             {{-- Criar um post de inspiração --}}
-            @if(Auth::user()->id === 1)
+            @if(Auth::check() && Auth::user()->id === 1)
             <button class="w-100 text-white btn btn-primary mt-4" data-bs-toggle="modal" data-bs-target="#createInspPostModal">
                 Adicionar Post de Inspiração
             </button>
@@ -157,3 +159,4 @@ new class extends Component {
         </div>
     </div>
 </div>
+
