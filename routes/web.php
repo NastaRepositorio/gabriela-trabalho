@@ -3,6 +3,8 @@
 use Livewire\Volt\Volt;
 
 Volt::route('/', 'home')->name('home');
+Volt::route('/create', 'create')->name('create')->middleware('auth');
+Volt::route('/edit/{post}', 'edit')->name('edit')->middleware('auth');
 Volt::route('/login', 'auth.login')->name('login')->middleware('guest');
 Volt::route('/register', 'auth.register')->name('register')->middleware('guest');
 Volt::route('/forgot-password', 'auth.forgot-password')->name('forgot-password')->middleware('guest');
